@@ -1,0 +1,49 @@
+- name: Grundkonfiguration
+  hosts: all
+  become: true
+
+  tasks:
+    - name: apt-Proxy setzen
+      ansible.builtin.copy:
+        dest: /etc/apt/apt.conf.d/01proxy
+        # https DIRECT: sonst nutzt apt den Proxy auch für HTTPS-Quellen,
+        # und apt-cacher-ng lehnt den HTTPS-Tunnel ab
+        content: |
+          Acquire::http::Proxy "{{ apt_proxy_url }}";
+          Acquire::https::Proxy "DIRECT";
+        owner: root
+        group: root
+        mode: "0644"
+      when: apt_proxy_url | length > 0
+      tags: proxy
+
+    - name: Paketlisten aktualisieren (max. 1x pro Stunde)
+      ansible.builtin.apt:
+        update_cache: true
+        cache_valid_time: 3600
+      tags: [upgrade, packages]
+
+    - name: Updates einspielen (safe = nichts wird entfernt)
+      ansible.builtin.apt:
+        upgrade: safe
+        lock_timeout: 600     # unattended-upgrades hält die Sperre oft lange
+      when: baseline_upgrade | bool
+      tags: upgrade
+
+    - name: Grundpakete installieren
+      ansible.builtin.apt:
+        name: "{{ base_packages }}"
+        state: present
+      tags: packages
+
+    - name: Prüfen, ob ein Neustart nötig ist
+      ansible.builtin.stat:
+        path: /var/run/reboot-required
+      register: reboot_flag
+      tags: upgrade
+
+    - name: Hinweis Neustart
+      ansible.builtin.debug:
+        msg: "{{ inventory_hostname }} braucht einen Neustart (nicht automatisch)."
+      when: reboot_flag.stat.exists
+      tags: upgrade

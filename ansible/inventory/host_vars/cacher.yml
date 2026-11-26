@@ -1,0 +1,2 @@
+# Der Cacher lädt seine Pakete direkt, damit er sich bei einem Defekt noch per apt reparieren lässt.
+apt_proxy_url: ""

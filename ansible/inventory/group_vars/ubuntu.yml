@@ -1,0 +1,3 @@
+# Ubuntu ab 25.10 nutzt sudo-rs als "sudo". Dessen Passwort-Abfrage hat Ansible nicht erkannt.
+# Das klassische sudo ist als sudo.ws installiert.
+ansible_become_exe: sudo.ws

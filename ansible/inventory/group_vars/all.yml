@@ -1,0 +1,6 @@
+apt_proxy_url: "http://10.0.10.12:3142"   # "" = kein Proxy
+base_packages:
+  - htop
+  - curl
+  - vim
+baseline_upgrade: true

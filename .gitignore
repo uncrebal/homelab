@@ -1,0 +1,16 @@
+# Zugangsdaten
+.env
+*.key
+*.pem
+id_rsa*
+id_ed25519*
+vault-password*
+
+# Sicherungen und Mitschnitte
+*.vma*
+*.tar
+*.tar.*
+*.sql
+*.pcap
+*.pcapng
+config*.xml

@@ -1,0 +1,45 @@
+- name: Teil 1 - Agent-Option in Proxmox aktivieren
+  hosts: vms
+  gather_facts: false
+
+  tasks:
+    - name: VM-Konfiguration lesen (inkl. noch nicht aktiver Änderungen)
+      ansible.builtin.command: qm config {{ vmid }}
+      delegate_to: pve
+      register: vm_config
+      changed_when: false
+      check_mode: false
+
+    - name: Agent-Option setzen
+      ansible.builtin.command: qm set {{ vmid }} --agent enabled=1
+      delegate_to: pve
+      when: vm_config.stdout is not search('^agent:\s*(enabled=)?1', multiline=True)
+
+- name: Teil 2 - Guest-Agent in den VMs installieren
+  hosts: vms
+  become: true
+
+  tasks:
+    - name: Paket qemu-guest-agent installieren
+      ansible.builtin.apt:
+        name: qemu-guest-agent
+        state: present
+        update_cache: true
+        cache_valid_time: 3600
+        lock_timeout: 600
+
+    - name: Prüfen, ob die virtio-Schnittstelle schon da ist
+      ansible.builtin.stat:
+        path: /dev/virtio-ports/org.qemu.guest_agent.0
+      register: agent_port
+
+    - name: Dienst starten (nur wenn Schnittstelle vorhanden)
+      ansible.builtin.systemd_service:
+        name: qemu-guest-agent
+        state: started
+      when: agent_port.stat.exists
+
+    - name: Hinweis Kaltstart
+      ansible.builtin.debug:
+        msg: "{{ inventory_hostname }} (VM {{ vmid }}): Agent aktiv erst nach Kaltstart (qm shutdown + qm start)."
+      when: not agent_port.stat.exists
