@@ -48,6 +48,6 @@ Zwei Linux-Router verbinden drei getrennte Netze:
 Server --LAN1-- Router1 --LAN0-- Router2 --LAN2-- Windows-Client
 ```
 
-Die Linux-VMs haben zusätzlich eine Karte nur für die Verwaltung per SSH. Dieses Repository beschreibt die
-Verkabelung, nicht die Routing-Konfiguration. Welche Karte an welcher Bridge hängt, zeigt der Vergleich der
-MAC-Adressen aus Proxmox mit `ip -br link`.
+Die Linux-VMs haben zusätzlich eine Karte nur für die Verwaltung per SSH. Welche Karte an welcher Bridge hängt,
+zeigt der Vergleich der MAC-Adressen aus Proxmox mit `ip -br link`. Adressplan und Konfiguration:
+[Linux-Routing](13-linux-routing.md).

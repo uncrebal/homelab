@@ -57,6 +57,28 @@ Adressen ins Außennetz verteilen.
 | [Windows-Domäne](docs/07-windows-domaene.md) | Domänencontroller und Client-Vorlage |
 | [GPU-Passthrough](docs/08-gpu-passthrough.md) | Grafikkarte an eine VM durchreichen |
 
+### Windows-Server-Projekt
+| Seite | Inhalt |
+|---|---|
+| [Active Directory](docs/09-active-directory.md) | OUs, Benutzer, Gruppen, NTFS-Rechte, Netz- und Home-Laufwerke |
+| [GPO und Softwareverteilung](docs/10-gpo-softwareverteilung.md) | Programme und Vorgaben automatisch verteilen, Admin Center |
+| [Windows-Dienste und Speicher](docs/11-windows-dienste-speicher.md) | DHCP, NAT, Drucker, NAS, iSCSI, Serversicherung |
+| [Windows ohne Domäne](docs/12-windows-arbeitsgruppe.md) | Arbeitsgruppe, Freigaben, Windows als Router |
+
+### Linux
+| Seite | Inhalt |
+|---|---|
+| [Linux-Routing](docs/13-linux-routing.md) | Zwei Router, statische Routen, Netplan, Subnetting |
+| [Debian absichern](docs/14-linux-absichern.md) | sudo, SSH-Schlüssel, UFW |
+
+### Datenbanken
+| Seite | Inhalt |
+|---|---|
+| [MariaDB](docs/15-mariadb.md) | SSH-Tunnel, Rechte nach dem Minimalprinzip |
+| [Pokémon-Sammlung](https://github.com/uncrebal/pokemon-sammlung) | eigenes Projekt mit PostgreSQL: Datenmodell, SQL, Web-App |
+
+Die Windows- und Linux-Projekte sind Übungsprojekte aus der Umschulung. Aufgabenstellungen sind nicht enthalten.
+
 ## Hardware
 Ein einzelner Rechner mit einer 1-TB-HDD, einer SSD und zwei weiteren Festplatten, dazu eine Nvidia Quadro
 M5000 für das Passthrough. Die HDD wird schnell zum Engpass, deshalb liegen zeitkritische VMs auf anderen

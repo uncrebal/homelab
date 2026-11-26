@@ -74,3 +74,28 @@ und Netzwerkkarte auf VirtIO umgestellt (gleiche MAC-Adresse).
   bestätigt.**
 
 Vor solchen Eingriffen: Backup und Snapshot.
+
+## 10. Windows: Nach einem Neustart bekommt kein Client eine Adresse
+**Suche:** Mit fester Adresse ließ sich der Server anpingen, die Verbindung war also in Ordnung. Das DHCP-Audit-Log
+meldete eine nicht erreichbare Domäne, eine fehlgeschlagene Autorisierung und das Ende des Dienstes.
+
+**Ursache:** Der DHCP-Dienst war gestartet, bevor Active Directory bereit war.
+
+**Lösung:** Dienst neu starten und auf verzögerten Start stellen:
+`sc.exe config dhcpserver start= delayed-auto`
+
+## 11. Softwareverteilung: „Installationsquelle nicht verfügbar“
+**Ursache:** Beim Anlegen des Pakets wurde die Datei über das lokale Laufwerk des Servers ausgewählt. Der Client
+suchte den Pfad auf seiner eigenen Platte.
+**Lösung:** Paket entfernen und mit Netzwerkpfad (`\\DC1\Programme\...`) neu anlegen.
+
+## 12. Startskript läuft nicht oder die Clients hängen
+- **Läuft nicht:** Die `.ps1` stand im Reiter *Skripts* statt *PowerShell-Skripts*. Hinweis darauf war die fehlende
+  Protokolldatei.
+- **Hängt:** Eine frühere Version lud beim Start ein Windows-Feature nach. Über die langsame Leitung blieben die
+  Clients über 20 Minuten bei „Bitte warten“, weil das Startskript vor der Anmeldung lief. Der unnötige Download
+  wurde entfernt.
+
+## 13. Computer lässt sich nicht in die OU verschieben
+**Ursache:** In der OU gab es Benutzerkonten mit denselben Namen wie die Computer (Fehler 8305).
+**Lösung:** Eine eigene Unter-OU `Clients`. Die Richtlinien der übergeordneten OU werden vererbt.
