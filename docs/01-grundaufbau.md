@@ -32,7 +32,27 @@ smartctl -H /dev/sda
 Ein Container mit `apt-cacher-ng` speichert Linux-Pakete zwischen. Bei einer langsamen Leitung muss ein Paket so
 nur einmal aus dem Internet geladen werden. HTTPS-Quellen werden nicht zwischengespeichert.
 
-## Linux-Vorlagen
+## Vorlagen und Klone
+Statt jedes System neu zu installieren, habe ich Vorlagen (Templates) angelegt und daraus neue VMs geklont:
+
+| Vorlage | Daraus entstanden |
+|---|---|
+| Ubuntu Server | Docker-VM, beide Linux-Router, Linux-Server im Routing-Labor |
+| Ubuntu Desktop | zwei Clients für das Wireshark-Lab |
+| Debian Desktop | Debian-Client für die Übungen zur Absicherung |
+| Windows 11 (mit Sysprep) | vier Windows-Clients für die Domäne |
+
+In Proxmox: VM fertig einrichten, herunterfahren, Rechtsklick → *Convert to template*. Neue VM über Rechtsklick auf
+die Vorlage → *Clone*.
+
+- **Full Clone:** eine komplett unabhängige Kopie. So habe ich die meisten VMs erstellt.
+- **Linked Clone:** speichert nur die Unterschiede zur Vorlage, ist in Sekunden fertig und braucht kaum Platz, hängt
+  aber von der Vorlage ab.
+
+Dabei gelernt: Mehrere Klone gleichzeitig auf dieselbe Festplatte haben die Weboberfläche lahmgelegt. Seitdem klone
+ich nacheinander.
+
+### Linux-Vorlagen
 Vor dem Umwandeln in ein Template die Machine-ID leeren, sonst erhalten die Klone beim DHCP dieselbe Adresse:
 
 ```bash

@@ -41,6 +41,7 @@ Versehen Adressen ins fremde Netz verteilt.
 - Proxmox VE 9 mit VMs und LXC-Containern, drei Speicherpools (LVM-Thin), eine durchgereichte Grafikkarte
 - OPNsense als Firewall vor dem Labornetz, NetBird als VPN für den Zugriff von unterwegs
 - Windows Server 2025 mit Active Directory, DNS, DHCP und Gruppenrichtlinien, dazu Windows-11-Clients
+- Vorlagen (Templates) für Ubuntu Server, Ubuntu- und Debian-Desktop und Windows 11, aus denen ich neue VMs klone
 - Ubuntu- und Debian-VMs, zwei davon als Router
 - Ansible, um die Linux-Maschinen gemeinsam zu verwalten
 - Docker mit Portainer, BookStack (mein Wiki) und Prometheus/Grafana
