@@ -37,16 +37,15 @@ Versehen Adressen ins fremde Netz verteilt.
 
 ![Proxmox-Übersicht mit allen VMs und Containern](docs/bilder/proxmox-uebersicht.png)
 
-
-- Proxmox VE 9 mit VMs und LXC-Containern, drei Speicherpools (LVM-Thin), eine durchgereichte Grafikkarte
-- OPNsense als Firewall vor dem Labornetz, NetBird als VPN für den Zugriff von unterwegs
-- Windows Server 2025 mit Active Directory, DNS, DHCP und Gruppenrichtlinien, dazu Windows-11-Clients
-- Vorlagen (Templates) für Ubuntu Server, Ubuntu- und Debian-Desktop und Windows 11, aus denen ich neue VMs klone
-- Ubuntu- und Debian-VMs, zwei davon als Router
-- Ansible, um die Linux-Maschinen gemeinsam zu verwalten
-- Docker mit Portainer, BookStack (mein Wiki) und Prometheus/Grafana
-- Zabbix zur Überwachung, MariaDB als Übungsdatenbank
-- Backups mit vzdump und rclone
+- [Proxmox VE 9](docs/01-grundaufbau.md) mit VMs und LXC-Containern, drei Speicherpools (LVM-Thin), eine [durchgereichte Grafikkarte](docs/08-gpu-passthrough.md)
+- [OPNsense](docs/02-netzwerk.md) als Firewall vor dem Labornetz, NetBird als VPN für den Zugriff von unterwegs
+- [Windows Server 2025](docs/07-windows-domaene.md) mit [Active Directory](docs/09-active-directory.md), DNS, DHCP und [Gruppenrichtlinien](docs/10-gpo-softwareverteilung.md), dazu Windows-11-Clients
+- [Vorlagen (Templates)](docs/01-grundaufbau.md#vorlagen-und-klone) für Ubuntu Server, Ubuntu- und Debian-Desktop und Windows 11, aus denen ich neue VMs klone
+- Ubuntu- und Debian-VMs, [zwei davon als Router](docs/13-linux-routing.md)
+- [Ansible](docs/03-ansible.md), um die Linux-Maschinen gemeinsam zu verwalten
+- [Docker mit Portainer, BookStack (mein Wiki)](docs/17-docker-bookstack.md) und [Prometheus/Grafana](docs/04-monitoring.md#prometheus-und-grafana)
+- [Zabbix](docs/04-monitoring.md) zur Überwachung, [MariaDB](docs/15-mariadb.md) als Übungsdatenbank
+- [Backups](docs/05-backup.md) mit vzdump und rclone
 
 ## Doku
 
