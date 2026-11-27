@@ -35,6 +35,9 @@ Versehen Adressen ins fremde Netz verteilt.
 
 ## Was drauf läuft
 
+![Proxmox-Übersicht mit allen VMs und Containern](docs/bilder/proxmox-uebersicht.png)
+
+
 - Proxmox VE 9 mit VMs und LXC-Containern, drei Speicherpools (LVM-Thin), eine durchgereichte Grafikkarte
 - OPNsense als Firewall vor dem Labornetz, NetBird als VPN für den Zugriff von unterwegs
 - Windows Server 2025 mit Active Directory, DNS, DHCP und Gruppenrichtlinien, dazu Windows-11-Clients

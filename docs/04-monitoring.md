@@ -35,6 +35,8 @@ flowchart LR
 - Geschrieben wird erst in eine temporäre Datei, dann wird umbenannt. So liest der Agent nie eine halbe Datei.
 - Eine zusätzliche Meldung kommt, wenn 5 Minuten lang keine Daten eintreffen.
 
+![Zabbix: Füllstand der Speicherpools](bilder/zabbix-thinpools.png)
+
 Kern des systemd-Service:
 
 ```ini

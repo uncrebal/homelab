@@ -25,11 +25,16 @@ Danach im Browser `https://<docker-vm>:9443` öffnen und innerhalb von 5 Minuten
 | Stack | Inhalt |
 |---|---|
 | `bookstack` | BookStack und eine MariaDB-Datenbank |
+| `homarr` | Startseite mit Links zu den Diensten im Labor |
 | `monitoring` | Prometheus, Grafana und Exporter ([Compose-Datei](../compose/monitoring.yml)) |
+
+![Portainer: die Stacks](bilder/portainer-stacks.png)
 
 ## BookStack
 BookStack ordnet Inhalte wie eine Bibliothek: **Regale → Bücher → Kapitel → Seiten**. Ich habe z. B. ein Buch für
 das Labor und je ein Buch pro Schulfach.
+
+![BookStack: das Regal mit den bereinigten Büchern](bilder/bookstack-public.png)
 
 Der Stack besteht aus zwei Containern:
 

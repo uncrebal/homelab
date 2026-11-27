@@ -10,6 +10,10 @@ So brauchen die VMs dahinter keine Adresse im Außennetz.
 | LAN (`vmbr2`) | `10.0.20.1/24`, DHCP mit statischen Zuordnungen |
 | Analyse-Lab (`vmbr6`) | `10.0.60.254/24` |
 
+![OPNsense: Übersicht der Schnittstellen](bilder/opnsense-schnittstellen.png)
+
+*Adressen im Bild durch die Beispielwerte ersetzt.*
+
 Zugriff vom Verwaltungsrechner: Firewall-Regeln erlauben dessen Adresse den Zugriff auf die Oberfläche und ins
 LAN. Dazu kommt auf dem Rechner eine Route:
 
