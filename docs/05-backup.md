@@ -41,4 +41,5 @@ pct restore 102 /var/lib/vz/dump/vzdump-lxc-102.tar.zst --storage local-lvm  # C
 
 Vorher auf dem Zielsystem die gleichen Bridges anlegen.
 
-> Eine komplette Wiederherstellung habe ich noch nicht getestet. Das steht als Nächstes an.
+> Für das Wiki habe ich die Wiederherstellung getestet (siehe [Docker und BookStack](17-docker-bookstack.md)).
+> Eine komplette Wiederherstellung einer VM steht noch aus.

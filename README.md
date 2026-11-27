@@ -52,6 +52,7 @@ Proxmox und Netz:
 - [Ansible](docs/03-ansible.md) mit den [Dateien](ansible/)
 - [Monitoring](docs/04-monitoring.md): Zabbix, eigene Überwachung der Speicherpools, Prometheus
 - [Backup](docs/05-backup.md)
+- [Docker, Portainer und BookStack](docs/17-docker-bookstack.md): mein Wiki und wie es gesichert wird
 - [Wireshark-Lab](docs/06-wireshark-lab.md)
 - [GPU-Passthrough](docs/08-gpu-passthrough.md)
 
@@ -76,6 +77,6 @@ Ein Rechner mit einer 1-TB-HDD, einer SSD, zwei älteren Festplatten und einer N
 langsam, deshalb liegen Windows und die wichtigen VMs auf der SSD.
 
 ## Was noch fehlt
-- Backups einmal komplett zurückspielen und das dokumentieren
+- Eine komplette VM aus dem Backup zurückspielen und das dokumentieren
 - SSH überall nur noch mit Schlüssel
 - Zabbix soll nicht mehr bei VMs meckern, die absichtlich aus sind
