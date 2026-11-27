@@ -53,16 +53,12 @@ erlauben.
 Ursache: Die virtio-serial-Schnittstelle entsteht erst nach einem Kaltstart. Ein Neustart in der VM
 reicht nicht.
 
-## 7. GPU-Passthrough: Der Host belegt den Audio-Teil der Karte
-Lösung: Beide Geräte-IDs an `vfio-pci` binden, die Module früh laden und mit `softdep` sicherstellen, dass
-`vfio-pci` vor dem Audio-Treiber kommt.
-
-## 8. Weboberfläche hängt beim Klonen
+## 7. Weboberfläche hängt beim Klonen
 Symptom: Zwei parallele Klone auf dieselbe Festplatte, die Weboberfläche reagierte nicht mehr.
 Lösung: Hängenden `lvcreate`-Prozess beenden, `pvestatd` neu starten, verwaiste Volumes prüfen und entfernen.
 Seitdem wird nacheinander geklont.
 
-## 9. Windows-VMs nachträglich auf VirtIO umstellen
+## 8. Windows-VMs nachträglich auf VirtIO umstellen
 Bei vorhandenen Windows-VMs wurde der Treiber offline mit `virt-v2v-in-place` eingespielt, danach wurden Platte
 und Netzwerkkarte auf VirtIO umgestellt (gleiche MAC-Adresse).
 
@@ -74,7 +70,7 @@ und Netzwerkkarte auf VirtIO umgestellt (gleiche MAC-Adresse).
 
 Vor solchen Eingriffen: Backup und Snapshot.
 
-## 10. Windows: Nach einem Neustart bekommt kein Client eine Adresse
+## 9. Windows: Nach einem Neustart bekommt kein Client eine Adresse
 Suche: Mit fester Adresse ließ sich der Server anpingen, die Verbindung war also in Ordnung. Das DHCP-Audit-Log
 meldete eine nicht erreichbare Domäne, eine fehlgeschlagene Autorisierung und das Ende des Dienstes.
 
@@ -83,18 +79,18 @@ Ursache: Der DHCP-Dienst war gestartet, bevor Active Directory bereit war.
 Lösung: Dienst neu starten und auf verzögerten Start stellen:
 `sc.exe config dhcpserver start= delayed-auto`
 
-## 11. Softwareverteilung: „Installationsquelle nicht verfügbar“
+## 10. Softwareverteilung: „Installationsquelle nicht verfügbar“
 Ursache: Beim Anlegen des Pakets wurde die Datei über das lokale Laufwerk des Servers ausgewählt. Der Client
 suchte den Pfad auf seiner eigenen Platte.
 Lösung: Paket entfernen und mit Netzwerkpfad (`\\DC1\Programme\...`) neu anlegen.
 
-## 12. Startskript läuft nicht oder die Clients hängen
+## 11. Startskript läuft nicht oder die Clients hängen
 - Läuft nicht: Die `.ps1` stand im Reiter *Skripts* statt *PowerShell-Skripts*. Hinweis darauf war die fehlende
   Protokolldatei.
 - Hängt: Eine frühere Version lud beim Start ein Windows-Feature nach. Über die langsame Leitung blieben die
   Clients über 20 Minuten bei „Bitte warten“, weil das Startskript vor der Anmeldung lief. Der unnötige Download
   wurde entfernt.
 
-## 13. Computer lässt sich nicht in die OU verschieben
+## 12. Computer lässt sich nicht in die OU verschieben
 Ursache: In der OU gab es Benutzerkonten mit denselben Namen wie die Computer (Fehler 8305).
 Lösung: Eine eigene Unter-OU `Clients`. Die Richtlinien der übergeordneten OU werden vererbt.
