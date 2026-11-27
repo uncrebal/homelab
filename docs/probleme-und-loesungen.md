@@ -58,17 +58,11 @@ Symptom: Zwei parallele Klone auf dieselbe Festplatte, die Weboberfläche reagie
 Lösung: Hängenden `lvcreate`-Prozess beenden, `pvestatd` neu starten, verwaiste Volumes prüfen und entfernen.
 Seitdem wird nacheinander geklont.
 
-## 8. Windows-VMs nachträglich auf VirtIO umstellen
-Bei vorhandenen Windows-VMs wurde der Treiber offline mit `virt-v2v-in-place` eingespielt, danach wurden Platte
-und Netzwerkkarte auf VirtIO umgestellt (gleiche MAC-Adresse).
-
-- Bei ausstehenden Windows-Updates meldete der Linux-Treiber `ntfs3` Dateisystemfehler. Das Vorgehen: Updates
-  fertig installieren lassen, für den Lauf das Einbinden erzwingen, danach in Windows `chkdsk C: /f`.
-- Bei einem mit Sysprep generalisierten Image brach der eingefügte Firstboot-Dienst das Setup ab. Er wurde entfernt
-  und durch `SetupComplete.cmd` ersetzt. Ob ein Klon dieser Vorlage damit sauber durchläuft, ist noch nicht
-  bestätigt.
-
-Vor solchen Eingriffen: Backup und Snapshot.
+## 8. Windows-VMs nachträglich auf schnellere Treiber umstellen
+Die ersten Windows-VMs liefen mit langsamen Standard-Treibern. Die schnelleren VirtIO-Treiber wurden nachträglich
+eingespielt, danach liefen Platte und Netzwerk deutlich besser. Das war technisch aufwendig und ist größtenteils
+mit KI-Hilfe passiert. Gelernt habe ich daraus vor allem: neue Windows-VMs gleich mit VirtIO installieren und vor
+solchen Eingriffen immer ein Backup und einen Snapshot machen.
 
 ## 9. Windows: Nach einem Neustart bekommt kein Client eine Adresse
 Suche: Mit fester Adresse ließ sich der Server anpingen, die Verbindung war also in Ordnung. Das DHCP-Audit-Log

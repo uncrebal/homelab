@@ -62,7 +62,7 @@ werden.
 Stand: Verbindung, Platte und Freigabe auf dem Server sind eingerichtet. Der Test vom Client ist noch nicht
 dokumentiert.
 
-## Windows Server-Sicherung
+## Windows-Server-Sicherung
 - Gesichert werden Bare-Metal-Recovery (mit Systemstatus inklusive AD) und die Datenplatte
 - Geplante Sicherungen auf eine Freigabe brauchen ein Konto, unter dem die Aufgabe auf dem Server laufen darf und
   das Zugriff auf das Ziel hat. Dafür möglichst ein eigenes Sicherungskonto in den *Sicherungs-Operatoren*.

@@ -68,6 +68,9 @@ Linux und Datenbanken:
 - [MariaDB mit SSH-Tunnel](docs/15-mariadb.md)
 - Mein größeres Datenbankprojekt ist die [Pokémon-Sammlung](https://github.com/uncrebal/pokemon-sammlung) mit PostgreSQL.
 
+Und wie ich mit KI arbeite:
+- [Arbeiten mit Claude](docs/16-arbeiten-mit-claude.md): was eingerichtet ist und wo ich Grenzen ziehe
+
 ## Hardware
 Ein Rechner mit einer 1-TB-HDD, einer SSD, zwei älteren Festplatten und einer Nvidia Quadro M5000. Die HDD ist
 langsam, deshalb liegen Windows und die wichtigen VMs auf der SSD.
