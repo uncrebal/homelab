@@ -7,7 +7,9 @@ Warum so? Ein Container braucht weniger Ressourcen als eine VM. Debian 13 bringt
 Debian-13-Container war die Proxmox-Funktion *nesting* nötig (wirkt erst nach einem Neustart).
 
 ### Proxmox ohne Agent überwachen
-Das Template *Proxmox VE by HTTP* liest über die API. Dafür gibt es einen eigenen Benutzer, der nur lesen darf:
+Das Template *Proxmox VE by HTTP* liest über die API. Dafür gibt es einen eigenen Benutzer, der nur lesen darf.
+In Proxmox geht das unter *Datacenter → Permissions* (Benutzer anlegen, Rolle *PVEAuditor* zuweisen, unter
+*API Tokens* ein Token erzeugen), oder so:
 
 ```bash
 pveum user add zabbix@pve

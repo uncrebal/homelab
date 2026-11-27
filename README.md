@@ -1,7 +1,12 @@
 # Homelab mit Proxmox
 
-Hier dokumentiere ich mein Labor auf einem alten Rechner mit Proxmox VE. Angefangen hat es mit ein paar VMs für
-die Umschulung, inzwischen laufen darauf eine Firewall, eine Windows-Domäne, mehrere Linux-Server und Container.
+Hier dokumentiere ich mein Labor auf einem Proxmox-Server, den ich während der Umschulung aufgebaut habe.
+Angefangen hat es mit ein paar VMs für den Unterricht, inzwischen laufen darauf eine Firewall, eine Windows-Domäne,
+mehrere Linux-Server und Container.
+
+Eingerichtet habe ich das meiste über die grafischen Oberflächen (Proxmox, OPNsense, Server-Manager). In der Doku
+stehen trotzdem oft Befehle, weil man sie besser festhalten und wiederholen kann. Wo es passt, steht der Weg über
+die Oberfläche dabei.
 
 Am meisten gelernt habe ich bei den Sachen, die nicht auf Anhieb funktioniert haben. Die stehen gesammelt unter
 [Probleme und Lösungen](docs/probleme-und-loesungen.md).
@@ -64,7 +69,7 @@ Linux und Datenbanken:
 - Mein größeres Datenbankprojekt ist die [Pokémon-Sammlung](https://github.com/uncrebal/pokemon-sammlung) mit PostgreSQL.
 
 ## Hardware
-Ein Tower mit einer 1-TB-HDD, einer SSD, zwei älteren Festplatten und einer Nvidia Quadro M5000. Die HDD ist
+Ein Rechner mit einer 1-TB-HDD, einer SSD, zwei älteren Festplatten und einer Nvidia Quadro M5000. Die HDD ist
 langsam, deshalb liegen Windows und die wichtigen VMs auf der SSD.
 
 ## Was noch fehlt

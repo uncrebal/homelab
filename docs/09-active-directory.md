@@ -15,6 +15,10 @@ Installation des Domänencontrollers: [Windows-Domäne](07-windows-domaene.md).
 Dazu kommt ein eigenes Administratorkonto in den Domänen-Admins. Benutzer und Gruppen liegen in einer eigenen OU
 `Firma`, die Computer in der Unter-OU `Clients`.
 
+Angelegt habe ich das in *Active Directory-Benutzer und -Computer* (`dsa.msc`): Rechtsklick auf die Domäne →
+*Neu → Organisationseinheit*, darin *Neu → Gruppe* und *Neu → Benutzer*, die Gruppen dann im Benutzer unter
+*Mitglied von*. Dasselbe als PowerShell, z. B. für eine Abteilung:
+
 ```powershell
 $OU = 'OU=Firma,DC=ad,DC=example,DC=internal'
 New-ADOrganizationalUnit -Name Firma -Path 'DC=ad,DC=example,DC=internal'
@@ -42,6 +46,10 @@ Prinzip: Die Freigabe ist weit offen, die eigentliche Zugriffssteuerung machen d
 - Auf den übergeordneten Ordnern nur *Lesen, Ausführen* für diesen Ordner, damit man hindurchgehen kann
 - Zugriffsbasierte Aufzählung: Benutzer sehen nur Ordner, auf die sie Zugriff haben
 - Rechte immer an Gruppen vergeben, nicht an einzelne Benutzer
+
+In der Oberfläche: Ordner → *Eigenschaften → Sicherheit → Erweitert* (Vererbung deaktivieren) bzw. *Bearbeiten*
+für die Gruppenrechte, die Freigabe im *Server-Manager → Datei-/Speicherdienste → Freigaben*. Kontrolle über
+*Erweitert → Effektiver Zugriff*. Für viele Ordner geht es mit `icacls` schneller:
 
 ```powershell
 icacls E:\Daten\VT\Preise /inheritance:r

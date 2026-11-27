@@ -24,14 +24,10 @@ ansible-playbook playbooks/baseline.yml -K
 
 `ping` ist hier kein ICMP-Ping: Ansible meldet sich per SSH an und startet Python.
 
-## Verwendete Techniken
-| Technik | Wofür |
-|---|---|
-| `delegate_to` | Der Task läuft je VM, wird aber auf dem Proxmox-Host ausgeführt (dort gibt es `qm`) |
-| `changed_when: false`, `check_mode: false` | Reines Lesen zählt nicht als Änderung und läuft auch im Probelauf |
-| Bedingung vor `qm set` | Idempotenz: Ein zweiter Lauf setzt die Option nicht erneut |
+## Das Wichtigste in Kürze
+- Ein Playbook beschreibt, wie der Zustand sein soll, nicht jeden einzelnen Schritt.
+- Man kann es beliebig oft laufen lassen. Ist schon alles richtig, ändert es nichts (idempotent).
+- Mit `--check` sieht man vorher, was sich ändern würde.
+- Proxmox selbst aktualisiere ich bewusst von Hand, nicht per Playbook.
 
-`StrictHostKeyChecking=accept-new` in der `ansible.cfg` übernimmt unbekannte Host-Schlüssel beim ersten Kontakt.
-Geänderte Schlüssel werden weiterhin abgelehnt.
-
-Proxmox selbst wird bewusst nicht automatisch aktualisiert.
+Ansible ist für mich noch neu. Die Playbooks hier sind mit KI-Hilfe entstanden, ich habe sie im Labor ausprobiert.

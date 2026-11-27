@@ -9,7 +9,8 @@ Ziel: Neue Clients bekommen Programme und Vorgaben automatisch. Namen und Adress
 
 ## Software-Freigabe
 Die Installation beim Systemstart läuft mit dem Computerkonto. Deshalb brauchen die *Domänencomputer*
-Leserecht, nicht nur die Benutzer.
+Leserecht, nicht nur die Benutzer. Eingerichtet über die Ordnereigenschaften (*Freigabe* und *Sicherheit*), als
+Befehl:
 
 ```powershell
 New-SmbShare -Name Programme -Path E:\Programme -ReadAccess Jeder

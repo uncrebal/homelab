@@ -19,6 +19,11 @@ Ein systemd-Timer startet wöchentlich ein Skript. Es sammelt die Sicherungen ei
 Das Sammeln läuft mit normalen Rechten, nur der Upload als root. Die Einrichtung erfolgt per Ansible. Skripte und
 Playbook dafür sind hier noch nicht enthalten.
 
+## Über die Oberfläche
+In Proxmox unter *Datacenter → Backup → Add* einen Zeitplan anlegen (Modus *Snapshot*, Kompression *ZSTD*).
+Einzelne VMs gehen über *VM → Backup → Backup now*. Zurückspielen: *Storage → Backups* → Sicherung auswählen →
+*Restore*.
+
 ## Einzelne VM von Hand sichern
 Von einem Windows-Rechner aus. Der Umweg über `cmd /c` ist nötig, weil die Windows PowerShell 5.1 Binärdaten beim
 Umleiten verändert:
