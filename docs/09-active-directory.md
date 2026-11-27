@@ -26,7 +26,7 @@ Add-ADGroupMember -Identity G-VT -Members vt01
 ```
 
 ## NTFS-Rechte und Freigabe
-**Prinzip:** Die Freigabe ist weit offen, die eigentliche Zugriffssteuerung machen die NTFS-Rechte.
+Prinzip: Die Freigabe ist weit offen, die eigentliche Zugriffssteuerung machen die NTFS-Rechte.
 `Ä` = Ändern, `L` = Lesen, `–` = kein Zugriff. Administratoren und SYSTEM haben überall Vollzugriff.
 
 | Ordner | GL | SEK | VT | DEV |
@@ -39,8 +39,8 @@ Add-ADGroupMember -Identity G-VT -Members vt01
 | DEV\Tools | L | – | – | Ä |
 
 - Vererbung an der Wurzel trennen und die Gruppe *Benutzer* entfernen
-- Auf den übergeordneten Ordnern nur *Lesen, Ausführen* für **diesen Ordner**, damit man hindurchgehen kann
-- **Zugriffsbasierte Aufzählung**: Benutzer sehen nur Ordner, auf die sie Zugriff haben
+- Auf den übergeordneten Ordnern nur *Lesen, Ausführen* für diesen Ordner, damit man hindurchgehen kann
+- Zugriffsbasierte Aufzählung: Benutzer sehen nur Ordner, auf die sie Zugriff haben
 - Rechte immer an Gruppen vergeben, nicht an einzelne Benutzer
 
 ```powershell
@@ -67,7 +67,7 @@ New-SmbShare -Name Home$ -Path E:\Home -FullAccess Jeder
 
 Im Benutzerkonto unter *Profil → Basisordner* `H:` mit `\\DC1\Home$\%username%` verbinden.
 
-**Stand:** Freigabe und Basisordner sind eingerichtet. Der Rechtetest (Benutzer A darf nicht in den Ordner von B)
+Stand: Freigabe und Basisordner sind eingerichtet. Der Rechtetest (Benutzer A darf nicht in den Ordner von B)
 ist noch nicht dokumentiert. Ordnerumleitung für Desktop und Dokumente ist nicht eingerichtet.
 
 ## Fehlersuche

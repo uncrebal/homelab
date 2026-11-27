@@ -1,6 +1,6 @@
 # MariaDB-Server mit SSH-Tunnel und Rechtekonzept
 
-MariaDB in einem LXC-Container, Zugriff vom Arbeitsrechner mit DBeaver. Als Übungsdatenbank dient **sakila**.
+MariaDB in einem LXC-Container, Zugriff vom Arbeitsrechner mit DBeaver. Als Übungsdatenbank dient sakila.
 Ein größeres eigenes Datenbankprojekt ist die [Pokémon-Sammlung](https://github.com/uncrebal/pokemon-sammlung)
 mit PostgreSQL.
 
@@ -28,7 +28,7 @@ ssh -L 3308:127.0.0.1:3306 admin@db01
 
 In DBeaver: Host `127.0.0.1`, Port `3308`. Der Tunnel muss während der ganzen Sitzung offen sein.
 
-**Wichtig verstanden:** MariaDB sieht Verbindungen durch den Tunnel als Anmeldung von `localhost`. Deshalb braucht
+MariaDB sieht Verbindungen durch den Tunnel als Anmeldung von `localhost`. Deshalb braucht
 man ein Konto `'name'@'localhost'`, ein Konto mit Host `%` greift hier nicht.
 
 ## Rechte nach dem Minimalprinzip
@@ -67,6 +67,6 @@ Das lokale Administrationskonto mit `unix_socket` muss bleiben, sonst kommt man 
 | DBeaver zeigt nach `exit` weiter Daten | ein zweiter Tunnel lief noch: `Get-NetTCPConnection -LocalPort 3308 -State Listen` |
 
 ## Stand
-Tunnel, eingeschränkte Konten und das Entfernen des Netzkontos sind umgesetzt. **Noch offen:** MariaDB nur noch auf
+Tunnel, eingeschränkte Konten und das Entfernen des Netzkontos sind umgesetzt. Noch offen: MariaDB nur noch auf
 `127.0.0.1` lauschen lassen (`bind-address`) und von außen prüfen, dass Port 3306 zu ist. Bis dahin ist der Port
 im Labornetz noch erreichbar, auch wenn es kein Konto mehr gibt, das sich von dort anmelden darf.

@@ -4,7 +4,7 @@ Ansible verwaltet Linux-VMs, Container und den Proxmox-Host von einer VM aus. Au
 Python nötig. Die Dateien liegen in [`../ansible`](../ansible/) (Auszug, mit Beispieladressen).
 
 ## Aufbau
-- **Inventory** mit Gruppen (`proxmox`, `container`, `vms`, darunter `ubuntu`, `router`, `debian`)
+- Inventory mit Gruppen (`proxmox`, `container`, `vms`, darunter `ubuntu`, `router`, `debian`)
 - Unterschiede zwischen Systemen stehen in `group_vars` und `host_vars`, nicht in den Playbooks
 - `become` (sudo) steht nur im Playbook, sonst fragt schon ein Verbindungstest nach dem Passwort
 
@@ -29,7 +29,7 @@ ansible-playbook playbooks/baseline.yml -K
 |---|---|
 | `delegate_to` | Der Task läuft je VM, wird aber auf dem Proxmox-Host ausgeführt (dort gibt es `qm`) |
 | `changed_when: false`, `check_mode: false` | Reines Lesen zählt nicht als Änderung und läuft auch im Probelauf |
-| Bedingung vor `qm set` | **Idempotenz:** Ein zweiter Lauf setzt die Option nicht erneut |
+| Bedingung vor `qm set` | Idempotenz: Ein zweiter Lauf setzt die Option nicht erneut |
 
 `StrictHostKeyChecking=accept-new` in der `ansible.cfg` übernimmt unbekannte Host-Schlüssel beim ersten Kontakt.
 Geänderte Schlüssel werden weiterhin abgelehnt.

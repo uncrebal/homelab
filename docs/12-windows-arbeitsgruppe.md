@@ -5,8 +5,8 @@ Vorstufe zum Domänenprojekt: vier Windows-11-PCs in einer Arbeitsgruppe. Namen 
 ## Inhalt
 - Statische IP-Adressen mit festem Schema (Bereiche für Server, Arbeitsplätze, Drucker und Router)
 - Netzwerkerkennung, Datei- und Druckerfreigabe, kennwortgeschütztes Freigeben
-- Lokale Benutzer und Gruppen. Ohne zentrale Anmeldung muss ein Konto **auf jedem PC mit gleichem Namen und
-  Kennwort** vorhanden sein.
+- Lokale Benutzer und Gruppen. Ohne zentrale Anmeldung muss ein Konto auf jedem PC mit gleichem Namen und
+  Kennwort vorhanden sein.
 - Ordnerfreigaben mit NTFS-Rechtematrix
 - Ein PC als Dateiserver mit zweitem Datenträger, Netzlaufwerk per Anmeldeskript
 - Zentral freigegebener Drucker, NAS zur Datensicherung
@@ -21,7 +21,7 @@ route print
 ```
 
 Dazu: ICMP-Echo in der Firewall erlauben, auf den Clients den Router als Standardgateway eintragen und auf der
-Gegenseite die **Rückroute** setzen.
+Gegenseite die Rückroute setzen.
 
 ## Typische Probleme
 | Problem | Ursache oder Lösung |

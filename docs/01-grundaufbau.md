@@ -25,8 +25,8 @@ smartctl -H /dev/sda
 | `vmbr6` | Analyse-Lab |
 
 ## Container oder VM?
-- **LXC-Container:** einzelne schlanke Linux-Dienste (Datenbank, Paket-Cache, VPN, Zabbix).
-- **VM:** Windows, Firewall, Router, Desktop-Systeme, Docker-Host.
+- LXC-Container: einzelne schlanke Linux-Dienste (Datenbank, Paket-Cache, VPN, Zabbix).
+- VM: Windows, Firewall, Router, Desktop-Systeme, Docker-Host.
 
 ## Paket-Cache
 Ein Container mit `apt-cacher-ng` speichert Linux-Pakete zwischen. Bei einer langsamen Leitung muss ein Paket so

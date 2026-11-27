@@ -10,7 +10,7 @@ So brauchen die VMs dahinter keine Adresse im Außennetz.
 | LAN (`vmbr2`) | `10.0.20.1/24`, DHCP mit statischen Zuordnungen |
 | Analyse-Lab (`vmbr6`) | `10.0.60.254/24` |
 
-**Zugriff vom Verwaltungsrechner:** Firewall-Regeln erlauben dessen Adresse den Zugriff auf die Oberfläche und ins
+Zugriff vom Verwaltungsrechner: Firewall-Regeln erlauben dessen Adresse den Zugriff auf die Oberfläche und ins
 LAN. Dazu kommt auf dem Rechner eine Route:
 
 ```powershell
@@ -35,7 +35,7 @@ lxc.mount.entry: /dev/net/tun dev/net/tun none bind,create=file
 Im NetBird-Dashboard werden nur die benötigten Ziele als Ressourcen angelegt und per Richtlinie auf die nötigen
 Ports beschränkt (Weboberfläche, SSH, bei Bedarf RDP).
 
-**Stolperfalle:** Nutzt das Netz, aus dem man sich verbindet, denselben IP-Bereich wie das Labor, gehen die Pakete
+Stolperfalle: Nutzt das Netz, aus dem man sich verbindet, denselben IP-Bereich wie das Labor, gehen die Pakete
 ins lokale Netz statt in den Tunnel.
 
 ## fail2ban auf dem Host

@@ -11,7 +11,7 @@ flowchart LR
     R2 ---|LAN2 10.0.102.0/24| W[Windows-Client .1]
 ```
 
-**Schema:** Server bekommen die erste Adresse im Netz, Router die letzte. Für die Verbindung zwischen den Routern
+Schema: Server bekommen die erste Adresse im Netz, Router die letzte. Für die Verbindung zwischen den Routern
 reicht ein `/30`: zwei nutzbare Adressen, dazu Netz- und Broadcastadresse.
 
 | Gerät | Netz | Adresse | Gateway bzw. Route |
@@ -72,7 +72,7 @@ Auf dem Windows-Client eingehende ICMPv4-Echoanfragen in der Firewall erlauben.
 - UFW auf dem Router blockiert die Weiterleitung (`ufw route allow ...`)
 
 ## Subnetting-Übung
-**Aufgabe:** Zwei Netze für je 6 Adressen, getrennt durch einen Router.
+Aufgabe: Zwei Netze für je 6 Adressen, getrennt durch einen Router.
 
 6 Hosts + Netz- und Broadcastadresse = 8 = 2³, also 3 Hostbits und damit `/29` (`255.255.255.248`).
 

@@ -1,14 +1,13 @@
-# Homelab mit Proxmox VE
+# Homelab mit Proxmox
 
-Ein virtualisiertes Labor auf einem einzelnen Server: getrennte Netze hinter einer Firewall, Windows- und
-Linux-Systeme, zentrale Verwaltung mit Ansible, Monitoring und Backups. Hier dokumentiere ich den Aufbau und
-vor allem die **Probleme, die dabei aufgetreten sind**.
+Hier dokumentiere ich mein Labor auf einem alten Rechner mit Proxmox VE. Angefangen hat es mit ein paar VMs für
+die Umschulung, inzwischen laufen darauf eine Firewall, eine Windows-Domäne, mehrere Linux-Server und Container.
 
-> **Entstehung:** Aufbau und Dokumentation sind mit Unterstützung eines KI-Assistenten (Claude) entstanden,
-> während meiner Umschulung zum Fachinformatiker für Digitale Vernetzung.
->
-> IP-Adressen, Benutzernamen und Domänennamen sind durch Beispielwerte ersetzt. Echte Passwörter und Tokens
-> gehören nicht in dieses Repository.
+Am meisten gelernt habe ich bei den Sachen, die nicht auf Anhieb funktioniert haben. Die stehen gesammelt unter
+[Probleme und Lösungen](docs/probleme-und-loesungen.md).
+
+Beim Aufbau und beim Schreiben der Doku hat mir ein KI-Assistent (Claude) geholfen. IP-Adressen, Namen und
+Domänen habe ich durch Beispielwerte ersetzt.
 
 ## Netzplan
 
@@ -26,65 +25,49 @@ flowchart TB
     SRV --- R[Router-Lab: vmbr3, vmbr4, vmbr5]
 ```
 
-Die Bridges `vmbr1` bis `vmbr6` haben **keinen physischen Port**. So kann kein DHCP-Server aus dem Labor direkt
-Adressen ins Außennetz verteilen.
+Nur `vmbr0` hängt am echten Netzwerkanschluss. Die anderen Bridges haben keinen, damit mein DHCP nicht aus
+Versehen Adressen ins fremde Netz verteilt.
 
-## Eingesetzte Technik
+## Was drauf läuft
 
-| Bereich | Werkzeuge |
-|---|---|
-| Virtualisierung | Proxmox VE 9, KVM-VMs, LXC-Container, LVM-Thin, PCIe-Passthrough |
-| Netzwerk | Linux-Bridges, OPNsense, NetBird (WireGuard), Routing-Labor |
-| Betriebssysteme | Debian 13, Ubuntu, Windows Server 2025, Windows 11 |
-| Windows-Dienste | Active Directory, DNS, DHCP, Sysprep-Vorlagen |
-| Automatisierung | Ansible |
-| Dienste | Docker, Portainer, MariaDB, apt-cacher-ng, BookStack |
-| Monitoring | Zabbix 7.0, Prometheus, Grafana |
-| Sicherheit, Analyse | fail2ban, Wireshark, ntopng |
-| Sicherung | vzdump, systemd-Timer, rclone |
+- Proxmox VE 9 mit VMs und LXC-Containern, drei Speicherpools (LVM-Thin), eine durchgereichte Grafikkarte
+- OPNsense als Firewall vor dem Labornetz, NetBird als VPN für den Zugriff von unterwegs
+- Windows Server 2025 mit Active Directory, DNS, DHCP und Gruppenrichtlinien, dazu Windows-11-Clients
+- Ubuntu- und Debian-VMs, zwei davon als Router
+- Ansible, um die Linux-Maschinen gemeinsam zu verwalten
+- Docker mit Portainer, BookStack (mein Wiki) und Prometheus/Grafana
+- Zabbix zur Überwachung, MariaDB als Übungsdatenbank
+- Backups mit vzdump und rclone
 
-## Dokumentation
+## Doku
 
-| Seite | Inhalt |
-|---|---|
-| [Probleme und Lösungen](docs/probleme-und-loesungen.md) | Fehlersuche aus dem Betrieb, **guter Einstieg** |
-| [Grundaufbau](docs/01-grundaufbau.md) | Installation, Speicher, Bridges, Vorlagen |
-| [Netzwerk und Zugriff](docs/02-netzwerk.md) | OPNsense, NetBird, fail2ban |
-| [Ansible](docs/03-ansible.md) | Linux-Systeme zentral verwalten ([Dateien](ansible/)) |
-| [Monitoring](docs/04-monitoring.md) | Zabbix, eigene Thin-Pool-Überwachung, Prometheus |
-| [Backup](docs/05-backup.md) | Was gesichert wird und wie man es zurückholt |
-| [Wireshark-Lab](docs/06-wireshark-lab.md) | Eigenes Netz zur Protokollanalyse |
-| [Windows-Domäne](docs/07-windows-domaene.md) | Domänencontroller und Client-Vorlage |
-| [GPU-Passthrough](docs/08-gpu-passthrough.md) | Grafikkarte an eine VM durchreichen |
+Proxmox und Netz:
+- [Grundaufbau](docs/01-grundaufbau.md): Installation, Speicher, Bridges, Vorlagen
+- [Netzwerk und Zugriff](docs/02-netzwerk.md): OPNsense, NetBird, fail2ban
+- [Ansible](docs/03-ansible.md) mit den [Dateien](ansible/)
+- [Monitoring](docs/04-monitoring.md): Zabbix, eigene Überwachung der Speicherpools, Prometheus
+- [Backup](docs/05-backup.md)
+- [Wireshark-Lab](docs/06-wireshark-lab.md)
+- [GPU-Passthrough](docs/08-gpu-passthrough.md)
 
-### Windows-Server-Projekt
-| Seite | Inhalt |
-|---|---|
-| [Active Directory](docs/09-active-directory.md) | OUs, Benutzer, Gruppen, NTFS-Rechte, Netz- und Home-Laufwerke |
-| [GPO und Softwareverteilung](docs/10-gpo-softwareverteilung.md) | Programme und Vorgaben automatisch verteilen, Admin Center |
-| [Windows-Dienste und Speicher](docs/11-windows-dienste-speicher.md) | DHCP, NAT, Drucker, NAS, iSCSI, Serversicherung |
-| [Windows ohne Domäne](docs/12-windows-arbeitsgruppe.md) | Arbeitsgruppe, Freigaben, Windows als Router |
+Windows (Übungsprojekt aus der Umschulung, eine kleine Firma mit vier Abteilungen):
+- [Domänencontroller und Client-Vorlage](docs/07-windows-domaene.md)
+- [Active Directory](docs/09-active-directory.md): Benutzer, Gruppen, NTFS-Rechte, Laufwerke
+- [Gruppenrichtlinien und Softwareverteilung](docs/10-gpo-softwareverteilung.md)
+- [DHCP, NAT, NAS, iSCSI und Serversicherung](docs/11-windows-dienste-speicher.md)
+- [Windows ohne Domäne](docs/12-windows-arbeitsgruppe.md)
 
-### Linux
-| Seite | Inhalt |
-|---|---|
-| [Linux-Routing](docs/13-linux-routing.md) | Zwei Router, statische Routen, Netplan, Subnetting |
-| [Debian absichern](docs/14-linux-absichern.md) | sudo, SSH-Schlüssel, UFW |
-
-### Datenbanken
-| Seite | Inhalt |
-|---|---|
-| [MariaDB](docs/15-mariadb.md) | SSH-Tunnel, Rechte nach dem Minimalprinzip |
-| [Pokémon-Sammlung](https://github.com/uncrebal/pokemon-sammlung) | eigenes Projekt mit PostgreSQL: Datenmodell, SQL, Web-App |
-
-Die Windows- und Linux-Projekte sind Übungsprojekte aus der Umschulung. Aufgabenstellungen sind nicht enthalten.
+Linux und Datenbanken:
+- [Routing mit zwei Linux-Routern](docs/13-linux-routing.md)
+- [Debian absichern](docs/14-linux-absichern.md)
+- [MariaDB mit SSH-Tunnel](docs/15-mariadb.md)
+- Mein größeres Datenbankprojekt ist die [Pokémon-Sammlung](https://github.com/uncrebal/pokemon-sammlung) mit PostgreSQL.
 
 ## Hardware
-Ein einzelner Rechner mit einer 1-TB-HDD, einer SSD und zwei weiteren Festplatten, dazu eine Nvidia Quadro
-M5000 für das Passthrough. Die HDD wird schnell zum Engpass, deshalb liegen zeitkritische VMs auf anderen
-Datenträgern.
+Ein Tower mit einer 1-TB-HDD, einer SSD, zwei älteren Festplatten und einer Nvidia Quadro M5000. Die HDD ist
+langsam, deshalb liegen Windows und die wichtigen VMs auf der SSD.
 
-## Offene Punkte
-- SSH-Anmeldung überall auf Schlüssel beschränken
-- Wiederherstellung der Backups regelmäßig üben
-- Zabbix-Meldungen für absichtlich ausgeschaltete VMs abstellen
+## Was noch fehlt
+- Backups einmal komplett zurückspielen und das dokumentieren
+- SSH überall nur noch mit Schlüssel
+- Zabbix soll nicht mehr bei VMs meckern, die absichtlich aus sind

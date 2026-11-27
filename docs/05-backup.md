@@ -1,7 +1,7 @@
 # Backup
 
-## Grundgedanke
-Gesichert wird vor allem, was sich **nicht neu erzeugen** lässt: Konfiguration und Daten. Systeme, die aus Vorlage
+## Was gesichert wird
+Gesichert wird vor allem, was sich nicht neu erzeugen lässt: Konfiguration und Daten. Systeme, die aus Vorlage
 und Ansible wieder entstehen, brauchen nicht unbedingt ein Abbild. Die von Hand gewachsene Docker-VM wird komplett
 gesichert.
 
@@ -36,5 +36,4 @@ pct restore 102 /var/lib/vz/dump/vzdump-lxc-102.tar.zst --storage local-lvm  # C
 
 Vorher auf dem Zielsystem die gleichen Bridges anlegen.
 
-> Ein Backup, das nie zurückgespielt wurde, ist nur eine Hoffnung. Regelmäßige Wiederherstellungstests sind noch
-> offen.
+> Eine komplette Wiederherstellung habe ich noch nicht getestet. Das steht als Nächstes an.

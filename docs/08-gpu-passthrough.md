@@ -1,7 +1,7 @@
 # GPU-Passthrough
 
-**Ziel:** Der Monitor am Server soll als zusätzlicher Bildschirm des Laptops dienen. Dafür bekommt eine Debian-VM
-die Grafikkarte und zeigt mit **Moonlight** einen Stream, den **Sunshine** auf dem Laptop von einem virtuellen
+Ziel: Der Monitor am Server soll als zusätzlicher Bildschirm des Laptops dienen. Dafür bekommt eine Debian-VM
+die Grafikkarte und zeigt mit Moonlight einen Stream, den Sunshine auf dem Laptop von einem virtuellen
 Monitor sendet.
 
 ## Auf dem Host

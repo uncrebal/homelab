@@ -1,7 +1,7 @@
 # Wireshark-Lab
 
 Zwei Ubuntu-Clients in einem eigenen Netz, um Protokolle wie ARP, DHCP, DNS und TCP mitzuschneiden.
-**Mitgeschnitten wird nur im eigenen Labor.** Fremden Verkehr ohne Erlaubnis abzugreifen kann strafbar sein.
+Mitgeschnitten wird nur im eigenen Labor. Fremden Verkehr ohne Erlaubnis abzugreifen kann strafbar sein.
 
 ## Aufbau
 ```
@@ -12,7 +12,7 @@ OPNsense liefert Gateway, DHCP, DNS und NAT. Ohne diese Dienste fehlt ein Teil d
 will.
 
 ## Schritte
-1. Bridge `vmbr6` **ohne** physischen Port anlegen.
+1. Bridge `vmbr6` ohne physischen Port anlegen.
 2. OPNsense eine weitere Netzwerkkarte geben, Schnittstelle zuweisen und aktivieren.
 3. DHCP-Bereich in Dnsmasq anlegen und die Schnittstelle auch unter *General* eintragen.
 4. Firewall-Regeln: DHCP (UDP 68 → 67, Quelle *any*) und Verkehr aus dem Lab-Netz. Neue Schnittstellen blockieren
@@ -30,6 +30,6 @@ will.
 
 Die Störung wieder entfernen: `sudo tc qdisc del dev ens18 root`
 
-**Capture-Filter** (`port 53`) wirken vor dem Aufzeichnen, **Anzeigefilter** (`dns`) blenden nachträglich nur aus.
+Capture-Filter (`port 53`) wirken vor dem Aufzeichnen, Anzeigefilter (`dns`) blenden nachträglich nur aus.
 
 Die Fehlersuche beim Aufbau steht unter [Probleme und Lösungen](probleme-und-loesungen.md).

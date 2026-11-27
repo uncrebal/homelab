@@ -11,7 +11,7 @@ Install-WindowsFeature AD-Domain-Services -IncludeManagementTools
 Install-ADDSForest -DomainName ad.example.internal -InstallDns
 ```
 
-DHCP verteilt **nur** im Domänennetz (Bindungen in der DHCP-Konsole prüfen):
+DHCP verteilt nur im Domänennetz (Bindungen in der DHCP-Konsole prüfen):
 
 ```powershell
 Install-WindowsFeature DHCP -IncludeManagementTools
@@ -34,8 +34,8 @@ Vorgabe der Übung.
 Add-Computer -DomainName ad.example.internal -Restart
 ```
 
-**Wenn Sysprep abbricht:** Das Log liegt in `C:\Windows\System32\Sysprep\Panther\setupact.log`. Ursachen waren
+Wenn Sysprep abbricht: Das Log liegt in `C:\Windows\System32\Sysprep\Panther\setupact.log`. Ursachen waren
 ausstehende Updates und einzelne AppX-Pakete.
 
-**Hinweis:** Ist der Domänencontroller aus und bei einem Rechner als einziger DNS-Server eingetragen, funktioniert
+Hinweis: Ist der Domänencontroller aus und bei einem Rechner als einziger DNS-Server eingetragen, funktioniert
 dort die Namensauflösung nicht.

@@ -3,11 +3,11 @@
 ## Zabbix 7.0 LTS
 Läuft in einem unprivilegierten LXC-Container mit PostgreSQL, Apache und PHP.
 
-**Warum so?** Ein Container braucht weniger Ressourcen als eine VM. Debian 13 bringt PostgreSQL 17 mit. Für den
+Warum so? Ein Container braucht weniger Ressourcen als eine VM. Debian 13 bringt PostgreSQL 17 mit. Für den
 Debian-13-Container war die Proxmox-Funktion *nesting* nötig (wirkt erst nach einem Neustart).
 
 ### Proxmox ohne Agent überwachen
-Das Template *Proxmox VE by HTTP* liest über die API. Dafür gibt es einen eigenen Benutzer, der **nur lesen** darf:
+Das Template *Proxmox VE by HTTP* liest über die API. Dafür gibt es einen eigenen Benutzer, der nur lesen darf:
 
 ```bash
 pveum user add zabbix@pve
@@ -18,7 +18,7 @@ pveum user token add zabbix@pve monitoring --privsep 0
 Das Token-Geheimnis wird nur einmal angezeigt. In Zabbix wird es als Makro vom Typ *Secret text* gespeichert.
 
 ## Eigene Überwachung der Thin-Pools
-**Problem:** Thin-Pools sind überbucht. Erreichen Daten **oder Metadaten** 100 %, können VMs nicht mehr schreiben.
+Problem: Thin-Pools sind überbucht. Erreichen Daten oder Metadaten 100 %, können VMs nicht mehr schreiben.
 Das mitgelieferte Template warnte erst ab 90 % und erfasste die Metadaten nicht.
 
 ```mermaid

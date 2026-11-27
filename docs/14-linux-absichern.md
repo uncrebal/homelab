@@ -35,9 +35,9 @@ sudo ufw status verbose
 
 UFW ist zustandsbehaftet: Antworten auf eigene Verbindungen kommen durch.
 
-**Ping blockieren** geht über die Zeile für `echo-request` in `/etc/ufw/before.rules` (Kette `ufw-before-input`,
+Ping blockieren geht über die Zeile für `echo-request` in `/etc/ufw/before.rules` (Kette `ufw-before-input`,
 `ACCEPT` zu `DROP`). In der Praxis bringt das wenig Schutz und erschwert die Fehlersuche.
 
 ## Feste Adresse oder DHCP-Reservierung
-Hier wurde eine **Reservierung** in OPNsense verwendet: zentral verwaltet, immer dieselbe Adresse. Nachteil: Ohne
+Hier wurde eine Reservierung in OPNsense verwendet: zentral verwaltet, immer dieselbe Adresse. Nachteil: Ohne
 DHCP-Server bekommt das System keine Adresse.
